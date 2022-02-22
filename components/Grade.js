@@ -17,13 +17,13 @@ export default function Grade(){
     }
     return<Layout><h1>Grade</h1>
         <div>
-            <label htmlFor=""><b>name</b></label>
+            <label htmlFor=""><b>Name</b></label>
             <input id="name"type="" /><br />
-            <label htmlFor=""><b>kor</b></label>
+            <label htmlFor=""><b>Kor</b></label>
             <input id="kor"type="" /><br />
-            <label htmlFor=""><b>eng</b></label>
+            <label htmlFor=""><b>Eng</b></label>
             <input id="eng"type="" /><br />
-            <label htmlFor=""><b>math</b></label>
+            <label htmlFor=""><b>Math</b></label>
             <input id="math"type="" /><br />
             <button onClick={()=>{sum()}}>결과확인</button>
             <div>이름 : {name} 국어 : {kor} 영어 : {eng} 수학 : {math}</div>
