@@ -2,11 +2,20 @@ import React, { useState } from "react";
 import Layout from "../containers/Layout";
 
 export default function Calc(){
-    const [num1, setNum1] = useState(0)
-    const [num2, setNum2] = useState(0)
-    const [opcode, setOpcode] = useState("")
-    const [result,setResult] = useState(0)
-    const sum = () => {
+    const [inputs, setInputs] = useState({})
+    const {num1, num2, opcode, result} = inputs;
+    
+    const handleChange = (e) =>{
+        e.preventDefault()
+        const{value, name} = e.target;
+        setInputs({...inputs, [name]: value})
+    }
+    const handleClick = (e) => {
+        e.preventDefault()
+        const res = {num1, num2, opcode} 
+        alert(`사용자이름: ${JSON.stringify(res)}`)
+    }
+    /*const sum = () => {
         let num1 = document.getElementById('num1').value
         console.log('숫자1 : '+num1)
         let num2 = document.getElementById('num2').value
@@ -28,13 +37,14 @@ export default function Calc(){
             default:
         } 
         
-    }
-    return <Layout><h1>Calc</h1>
-        <form action="">
+    }*/
+    return <Layout>
+        <form>
+        <h1>Calc</h1>
             <label htmlFor=""><b>Num1 </b></label>
-            <input id="num1"type=""/><br />
+            <input type="text" name="num1" onChange={handleChange}/><br />
             <label htmlFor=""><b>Opcode </b></label>
-            <select name="" id="opcode">
+            <select name="opcode" id=""onChange={handleChange}>
             <option value="+">+</option>
             <option value="-">-</option>
             <option value="*">*</option>
@@ -43,8 +53,8 @@ export default function Calc(){
             </select>
             <br />
             <label htmlFor=""><b>Num2 </b></label>
-            <input id="num2"type="" /><br />
-            <button onClick={()=>{sum()}}>계산하기</button>
+            <input type="text" name="num2" onChange={handleChange}/><br />
+            <button onClick={handleClick}>계산하기</button>
         </form>
             <div>결과 : {num1} {opcode} {num2} = {result}</div>
     </Layout>
