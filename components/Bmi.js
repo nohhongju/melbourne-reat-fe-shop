@@ -1,9 +1,11 @@
 import React, { useState }from "react";
 import Layout from "../containers/Layout";
 import axios from "axios";
+import {memberBmi} from '../api/index'
 
 export default function Bmi(){
     const [inputs,setInputs] = useState({})
+    const [result,setResult] = useState('')
     const {name, weight, height} = inputs;
     
     const handleChange = (e) => {
@@ -14,22 +16,10 @@ export default function Bmi(){
     }
     const handleClick = (e) => {
         e.preventDefault()
-        const bmiRequest = {name, weight, height}
-        alert(`사용자이름: ${JSON.stringify(bmiRequest)}`)
-        /*
-            axios.get(`http://localhost:8080/member/bmi/aaa/180.5/80.5`)
-             .then((res) => {
-                    alert(`답장이 도착했습니다.[내용] ${JSON.stringify(res.data)}`)
-             })*/
+        memberBmi({name, weight, height}).then( res => {setResult(res.data)}).catch(err => console.log(`에러발생 : ${err}`))
+       
     }
-    /*const sum = () => {
-        let name = document.getElementById('name').value
-        let height = document.getElementById('height').value
-        let weight = document.getElementById('weight').value
-        setName(name)
-        setHeight(height)
-        setWeigt(weight)
-    }*/
+   
     return <Layout>
         <form>
         <h1>Bmi</h1>
@@ -43,5 +33,6 @@ export default function Bmi(){
             <button onClick={handleClick} >BMI 체크</button>
         </div>
         </form>
+        <div>결과 : {result}</div>
     </Layout>
 }

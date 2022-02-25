@@ -10,8 +10,8 @@ export default function Login(){
     }
     const handleClick = (e) => {
         e.preventDefault()
-        const res = {username, password}
-        alert(`사용자이름: ${JSON.stringify(res)}`)
+        const loginRequest = {username, password}
+        alert(`사용자이름: ${JSON.stringify(loginRequest)}`)
     }
     /*
     const sum = () =>{
